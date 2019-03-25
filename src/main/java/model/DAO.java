@@ -35,4 +35,18 @@ public class DAO {
                     
                 }
        }
+       public void supprimeCommande() throws SQLException {
+           String sql = "SELECT * FROM CUSTOMER WHERE STATE = ?";
+		try (Connection connection  = myDataSource.getConnection(); 
+		     PreparedStatement stmt = connection.prepareStatement(sql)){
+           
+       }
+    }
+       public void modifierCommande () throws SQLException {
+           String sql = "SELECT * FROM CUSTOMER WHERE STATE = ?";
+		try (Connection connection  = myDataSource.getConnection(); 
+		     PreparedStatement stmt = connection.prepareStatement(sql)){
+           
+            }
+       }
 }
