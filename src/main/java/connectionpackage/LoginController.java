@@ -11,7 +11,6 @@ public class LoginController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Quelle action a appelé cette servlet ?
         String action = request.getParameter("action");
         if (null != action) {
             switch (action) {
