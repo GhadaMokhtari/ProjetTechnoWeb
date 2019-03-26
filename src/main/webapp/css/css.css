@@ -1,0 +1,46 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 26 mars 2019, 15:14:24
+    Author     : infoo
+*/
+.a1 {
+    display: inline-block;
+}
+.a2 {
+    display: inline-block;
+    padding-bottom: 0;
+    padding-top: 0;
+    padding-right: 40px;
+    padding-left: 40px;
+    margin: 0;
+}
+
+.barAffiche {
+    height: 100px;
+    padding-top: 20px;
+    margin-top: -45px;
+    font-weight: bold;
+    font-size: 30px;
+    font-family: 'Raleway', sans-serif;
+    background: #2c3e50;
+    background-attachment: fixed;
+}
+
+body{
+    background: #e6e6e6;
+}
+h1{
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    margin-top: 200px;
+    font-size: 40px;
+}
+
+h2{
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+}
