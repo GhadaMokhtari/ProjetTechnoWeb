@@ -18,12 +18,12 @@ body{
 form{
     padding: 20px;
     margin-top: 20px;
-    border-color: blue;
+    color: #057269;
     align-content: center;
 }
 
 legend{
-    color: blue;   
+    color: #057269;   
     font-size: 30px;
     padding-bottom: 40px;
 }
@@ -35,4 +35,19 @@ div{
 
 br{
     line-height:20px;
+}
+.a1{
+    padding:6px 0 6px 0;
+    font-size: 16px;
+    font-family: 'Raleway', sans-serif;
+	background:#057269;
+	color:#fff;
+	width:100px;
+	border-radius:10px;
+	border:none;
+}
+
+fieldset{
+    border: ridge;
+    border-color:#057269;
 }

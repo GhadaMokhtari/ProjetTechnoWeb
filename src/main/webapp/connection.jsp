@@ -24,7 +24,7 @@
                  <label for="motdepasse">Mot de passe <span class="requis">*</span></label>
                 <input type="password" id="motdepasse" name="motdepasse" value="" size="20" maxlength="20" />
                 <br /><br>
-                <input class="a1" type="button" value="Connecter">
+                <input class="bouton" type="button" value="Connecter">
             </form>
         </fieldset>
         </div>
