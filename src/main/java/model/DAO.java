@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -27,6 +28,38 @@ public class DAO {
     public DAO(DataSource dataSource) {
         this.myDataSource = dataSource;
     }
+    
+    
+    /**
+	 * Contenu de la table PURCHASE_ORDER
+	 * @return Liste des commandes
+	 * @throws SQLException renvoyées par JDBC
+	 */
+	public List<PurchaseOrder> allCommandes() throws SQLException {
+
+		List<PurchaseOrder> result = new LinkedList<>();
+
+		String sql = "SELECT * FROM PURCHASE_ORDER ORDER BY ORDER_NUM";
+		try (Connection connection = myDataSource.getConnection(); 
+		     PreparedStatement stmt = connection.prepareStatement(sql)) {
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				int num=rs.getInt("ORDER_NUM");
+                                int idclient=rs.getInt("CUSTOMER_ID");
+                                int idproduit=rs.getInt("PRODUCT_ID");
+                                int quantity=rs.getInt("QUANTITY");
+                                int shippingcost=rs.getInt("SHIPPING_COST");
+                                Date salesdate=rs.getDate("SALES_DATE");
+                                Date shippingdate=rs.getDate("SHIPPING_DATE");
+                                String company=rs.getString("FREIGHT_COMPANY");
+
+				PurchaseOrder c = new PurchaseOrder(num, idclient, idproduit, quantity, shippingcost, salesdate, shippingdate, company);
+				result.add(c);
+			}
+		}
+		return result;
+	}
+    
 
     public int ajoutCommande(int Qte) throws SQLException {
         int result = 0;
