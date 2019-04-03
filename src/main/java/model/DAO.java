@@ -61,12 +61,19 @@ public class DAO {
 	}
     
 
-    public int ajoutCommande(int Qte) throws SQLException {
+    public int ajoutCommande(int ordernum, int idcustomer, int idproduct, int quantity, int shippingcost, Date salesDate, Date shippingDate, String company) throws SQLException {
         int result = 0;
-        String sql = "INSERT INTO PURCHASE_ORDER VALUES=(?) ";
+        String sql = "INSERT INTO PURCHASE_ORDER VALUES=(?,?,?,?,?,?,?,?) ";
         try (Connection connection = myDataSource.getConnection();
                 PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, Qte);
+            stmt.setInt(1, ordernum);
+            stmt.setInt(2, idcustomer);
+            stmt.setInt(3, idproduct);
+            stmt.setInt(4, quantity);
+            stmt.setInt(5, shippingcost);
+            stmt.setDate(6, (java.sql.Date) salesDate);
+            stmt.setDate(7, (java.sql.Date) shippingDate);
+            stmt.setString(8, company);
             result = stmt.executeUpdate();
         }
         return result;
@@ -83,13 +90,13 @@ public class DAO {
         return result;
     }
 
-    public int modifierCommande(int Qte, int ProductID) throws SQLException {
+    public int modifierCommande(int Qte, int ordernum) throws SQLException {
         int result=0;
-        String sql = "UPDATE PURCHASE_ORDER SET QUANTITY = ? , PRODUCT_CODE = ?";
+        String sql = "UPDATE PURCHASE_ORDER SET QUANTITY = ? WHERE ORDER_NUM=?";
         try (Connection connection = myDataSource.getConnection();
                 PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, Qte);
-            stmt.setInt(2, ProductID);
+            stmt.setInt(2, ordernum);
             result=stmt.executeUpdate();
         }
         return result;
