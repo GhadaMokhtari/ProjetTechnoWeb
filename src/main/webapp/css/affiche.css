@@ -8,3 +8,61 @@ and open the template in the editor.
     Author     : infoo
 */
 
+*{box-sizing:border-box;}
+
+table
+{
+    border-collapse: collapse;
+    margin : 0 auto;
+    margin-top: 100px;
+}
+td, th
+{
+    border: 1px solid #057269;
+}
+
+caption{
+    font-size: 35px;
+}
+ul li{
+    display: inline-block;
+    text-decoration: none;
+}
+
+.a2 {
+    display: inline-block;
+    padding-bottom: 0;
+    padding-top: 0;
+    padding-right: 40px;
+    padding-left: 40px;
+    margin: 0;
+}
+
+.barAffiche {
+    height: 100px;
+    padding-top: 20px;
+    margin-top: -45px;
+    font-weight: bold;
+    font-size: 30px;
+    font-family: 'Raleway', sans-serif;
+    background: #057269;
+    background-attachment: fixed;
+}
+
+h1{
+    align-content: center;
+}
+
+.a{
+    padding:6px 0 6px 0;
+    font-size: 16px;
+    font-family: 'Raleway', sans-serif;
+    background:#0a2724;
+    color:#fff;
+    width:200px;
+    border-radius:10px;
+    border:none;
+    display: block;
+    margin : auto;
+    margin-top: 100px;
+}
