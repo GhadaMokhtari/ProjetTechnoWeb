@@ -73,8 +73,11 @@
             </ol>
         </nav>
         
+        <h1>Edition des commandes</h1>
          <!-- La zone où les résultats vont s'afficher -->
         <div id="commandes"></div>
+        
+        <a href="#">Ajouter une commande</a>
         
         <!-- Le template qui sert à formatter la liste des codes -->
         <script id="commandesTemplate" type="text/template">
