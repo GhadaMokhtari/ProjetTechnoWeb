@@ -59,7 +59,36 @@ public class DAO {
 		}
 		return result;
 	}
-    
+        
+    /**
+	 * Contenu de la table PRODUCT
+	 * @return Liste des produits
+	 * @throws SQLException renvoyées par JDBC
+	 */
+        public List<Product> allProduct() throws SQLException {
+
+		List<Product> result = new LinkedList<>();
+
+		String sql = "SELECT * FROM PRODUCT ORDER BY PRODUCT_ID";
+		try (Connection connection = myDataSource.getConnection(); 
+		     PreparedStatement stmt = connection.prepareStatement(sql)) {
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+                                int idproduct=rs.getInt("PRODUCT_ID");
+                                int idmanufacturer=rs.getInt("MANUFACTURER_ID");
+                                String productcode=rs.getString("PRODUCT_CODE");
+                                int purchasecost=rs.getInt("PURCHASE_COST");
+                                int quantityonhand=rs.getInt("QUANTITY_ON_HAND");
+                                int markup=rs.getInt("MARKUP");
+                                String available=rs.getString("AVAILABLE");
+                                String description=rs.getString("DESCRIPTION");
+
+				Product p = new Product(idproduct, idmanufacturer, productcode, purchasecost, quantityonhand, markup, available, description);
+				result.add(p);
+			}
+		}
+		return result;
+	}
 
     public int ajoutCommande(int ordernum, int idcustomer, int idproduct, int quantity, int shippingcost, Date salesDate, Date shippingDate, String company) throws SQLException {
         int result = 0;
