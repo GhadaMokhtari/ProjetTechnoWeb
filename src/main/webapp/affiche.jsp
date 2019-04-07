@@ -81,7 +81,7 @@
          <!-- La zone où les résultats vont s'afficher -->
         <div id="commandes"></div>
         
-        <a href="#">Ajouter une commande</a>
+        <input class="a" type="button" value="Ajouter une commande">
         
         <!-- Le template qui sert à formatter la liste des codes -->
         <script id="commandesTemplate" type="text/template">
