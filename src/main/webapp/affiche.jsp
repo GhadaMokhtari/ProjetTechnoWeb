@@ -90,7 +90,7 @@
             {{! Pour chaque enregistrement }}
             {{#records}}
                 {{! Une ligne dans la table }}
-                <TR><TD>{{ordernum}}</TD><TD>{{idcustomer}}</TD><TD>{{idproduct}}</TD><TD>{{quantity}}</TD><TD>{{shippingcost}}</TD><TD>{{salesDate}}</TD><TD>{{shippingDate}}</TD><TD>{{company}}</TD><TD><button><a href="">Modifier</a></button></TD><TD><button onclick="deleteCommande('{{ordernum}}')">Supprimer</button></TD></TR>
+                <TR><TD>{{ordernum}}</TD><TD>{{idcustomer}}</TD><TD>{{idproduct}}</TD><TD>{{quantity}}</TD><TD>{{shippingcost}}</TD><TD>{{salesDate}}</TD><TD>{{shippingDate}}</TD><TD>{{company}}</TD><TD><button class="b1"><a href="">Modifier</a></button></TD><TD><button class="b1" onclick="deleteCommande('{{ordernum}}')">Supprimer</button></TD></TR>
             {{/records}}
             </TABLE>
         </script>
