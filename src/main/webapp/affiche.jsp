@@ -58,7 +58,11 @@
                 });
                 return false;
             }
-        
+            
+            // Fonction qui traite les erreurs de la requête
+            function showError(xhr, status, message) {
+                alert(JSON.parse(xhr.responseText).message);
+            }
         
         </script>
         <title>JSP Page</title>
