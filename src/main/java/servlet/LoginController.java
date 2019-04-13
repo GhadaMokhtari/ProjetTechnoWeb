@@ -92,8 +92,15 @@ public class LoginController extends HttpServlet {
             return true;
             
            
-        } else { // On positionne un message d'erreur pour l'afficher dans la JSP
-            request.setAttribute("errorMessage", "Login/Password incorrect");
+        } else if (login=="administrateur" && pwd==300) { 
+            String jspView;
+            HttpSession session = request.getSession(true); // démarre la session
+            session.setAttribute("userName", user);
+            jspView = "afficheCA.jsp";
+            //request.getRequestDispatcher(jspView).forward(request, response);
+            return true;
+        } else{ // On positionne un message d'erreur pour l'afficher dans la JSP
+             request.setAttribute("errorMessage", "Login/Password incorrect");
             return false;
         }
     }

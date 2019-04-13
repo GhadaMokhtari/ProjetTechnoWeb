@@ -11,12 +11,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.sql.DataSource;
+import simplejdbc.DAOException;
 
 public class DAO {
 
@@ -129,5 +133,83 @@ public class DAO {
             result=stmt.executeUpdate();
         }
         return result;
+    }
+    public List<Float> CAClient(int CustomerID, Date Date_D, Date Date_F) throws DAOException {
+        float result=0;
+        List<Float> mList = new ArrayList();
+        String sql ="SELECT * FROM PURCHASE_ORDER INNER JOIN PRODUCT USING(PRODUCT_ID) WHERE CUSTOMER_ID=? and Sales_date BETWEen '?' and '?'";
+        try (Connection connection = myDataSource.getConnection(); 
+			PreparedStatement stmt = connection.prepareStatement(sql)) {
+
+			stmt.setInt(1, CustomerID);
+                        stmt.setDate(2, (java.sql.Date) Date_D);
+                        stmt.setDate(3, (java.sql.Date) Date_F);
+                        
+			try (ResultSet rs = stmt.executeQuery()) {
+				if (rs.next()) {
+					float purchase_cost = rs.getFloat("PURCHASE_COST");
+					float shipping_cost = rs.getFloat("SHIPPING_COST");
+					
+					result = purchase_cost+shipping_cost;
+                                mList.add(result);
+                                        } 
+			}
+		}  catch (SQLException ex) {
+			Logger.getLogger("DAO").log(Level.SEVERE, null, ex);
+			throw new DAOException(ex.getMessage());
+		}
+        return mList;
+    }
+    public List<Float> CAProduct(int ProductID, Date date_D, Date date_F) throws DAOException {
+        float result=0;
+        List<Float> mList = new ArrayList();
+        String sql ="SELECT * FROM PURCHASE_ORDER INNER JOIN PRODUCT USING(PRODUCT_ID) WHERE PRODUCT_ID=? and Sales_date BETWEen '?' and '?'";
+        try (Connection connection = myDataSource.getConnection(); 
+			PreparedStatement stmt = connection.prepareStatement(sql)) {
+
+			stmt.setInt(1, ProductID);
+                        stmt.setDate(2, (java.sql.Date) date_D);
+                        stmt.setDate(3, (java.sql.Date) date_F);
+                        
+			try (ResultSet rs = stmt.executeQuery()) {
+				if (rs.next()) {
+					float purchase_cost = rs.getFloat("PURCHASE_COST");
+					float shipping_cost = rs.getFloat("SHIPPING_COST");
+					
+					result = purchase_cost+shipping_cost;
+                                mList.add(result);
+                                        } 
+			}
+		}  catch (SQLException ex) {
+			Logger.getLogger("DAO").log(Level.SEVERE, null, ex);
+			throw new DAOException(ex.getMessage());
+		}
+        return mList;
+    }
+    public List<Float> CA_ZoneGéo(String ZIP, Date D_Debut, Date D_Fin) throws DAOException{
+        float result=0;
+        List<Float> mList = new ArrayList();
+        String sql ="SELECT * FROM PURCHASE_ORDER INNER JOIN CUSTOMER USING(Customer_ID) INNER JOIN MICRO_MARKET ON MICRO_MARKET.ZIP_CODE=CUSTOMER.ZIP WHERE ZIP_CODE='?' AND SALES_DATE BETWEEN '?' AND '?'";
+        try (Connection connection = myDataSource.getConnection(); 
+			PreparedStatement stmt = connection.prepareStatement(sql)) {
+
+			stmt.setString(1, ZIP);
+                        stmt.setDate(2, (java.sql.Date) D_Debut);
+                        stmt.setDate(3, (java.sql.Date) D_Fin);
+                        
+			try (ResultSet rs = stmt.executeQuery()) {
+				if (rs.next()) {
+					float purchase_cost = rs.getFloat("PURCHASE_COST");
+					float shipping_cost = rs.getFloat("SHIPPING_COST");
+					
+					result = purchase_cost+shipping_cost;
+                                mList.add(result);
+                                        } 
+			}
+		}  catch (SQLException ex) {
+			Logger.getLogger("DAO").log(Level.SEVERE, null, ex);
+			throw new DAOException(ex.getMessage());
+		}
+        return mList;
     }
 }
