@@ -1,14 +1,12 @@
 <%-- 
-    Document   : affiche
-    Created on : 2 avr. 2019, 14:06:27
-    Author     : infoo
+    Document   : ajoutecommande
+    Created on : 14 avr. 2019, 14:47:54
+    Author     : bonneviale clara
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html>
-
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!-- On charge jQuery -->
@@ -21,37 +19,37 @@
         $(document).ready(// Exécuté à la fin du chargement de la page
                     function () {
                         // On montre la liste des codes
-                        showCommandes();
+                        showProduits();
                     }
             );
     
-        function showCommandes() {
-                // On fait un appel AJAX pour chercher les codes
+        function showProduits() {
+                // On fait un appel AJAX pour chercher les produits selectionnables
                 $.ajax({
-                    url: "allCommandes",
+                    url: "allProduits",
                     dataType: "json",
                     error: showError,
                     success: // La fonction qui traite les résultats
                             function (result) {
                                 // Le code source du template est dans la page
-                                var template = $('#commandesTemplate').html();
+                                var template = $('#produitsTemplate').html();
                                 // On combine le template avec le résultat de la requête
                                 var processedTemplate = Mustache.to_html(template, result);
                                 // On affiche la liste des options dans le select
-                                $('#commandes').html(processedTemplate);
+                                $('#formulaireajout').html(processedTemplate);
                             }
                 });
             }
             
-            // Supprimer un code
-            function deleteCommande(ordernum) {
+            // Ajouter une commande
+            function addCommande() {
                 $.ajax({
-                    url: "deleteCommande",
-                    data: {"ordernum": ordernum},
+                    url: "addCommande",
+                    // serialize() renvoie tous les paramètres saisis dans le formulaire
+                    data: $("#commandeForm").serialize(),
                     dataType: "json",
-                    success: 
+                    success: // La fonction qui traite les résultats
                             function (result) {
-                                showCommandes();
                                 console.log(result);
                             },
                     error: showError
@@ -65,7 +63,7 @@
             }
         
         </script>
-        <title>JSP Page</title>
+        <title>Ajout d'une commande</title>
     </head>
     <STYLE>A {text-decoration: none; color: black;} </STYLE>
     <body>
@@ -77,26 +75,31 @@
             </ol>
         </nav>
         
-        <h1>Edition des commandes</h1>
-         <!-- La zone où les résultats vont s'afficher -->
-        <div id="commandes"></div>
+        <h1>Formulaire d'ajout d'une commande</h1>
         
-        <input class="a" type="button" value="Ajouter une commande">
-        <a class="a" href="ajoutecommande.jsp">Ajouter une commande</a> 
+        <form id="commandeForm" onsubmit="event.preventDefault(); addCommande();">
+            <fieldset><legend>Ajout d'une nouvelle commande</legend>
+            Numéro de commande : <input id="ordernum" name="ordernum" required ><br/>
+            id produit : <select name="idproduct" id="idproduct">
+                            {{! Pour chaque enregistrement }}
+                                {{#records}}
+                                {{! Une ligne dans la liste déroulante }}
+                                    <option>{{idproduct}}</option>
+                                {{/records}}
+                         </select><br/>
+            quantité: <input id="quantity" name="quantity" type="number" required><br/>
+            cout de transport: <input id="shippingcost" name="shippingcost" type="number" required><br/>
+            date de vente: <input id="salesdate" name="salesdate" required placeholder="yyyy-MM-d"><br/>
+            date d'envoi: <input id="shippingdate" name="shippingdate" required placeholder="yyyy-MM-d"><br/>
+            Entreprise de transport: <input id="company" name="company" type="text" required><br/>
+            <input type="hidden" id="idcustomer" name="idcustomer" value="">
+            
+            
+            <input type="submit" value="Ajouter">
+            </fieldset>
+        </form>
         
-        <!-- Le template qui sert à formatter la liste des codes -->
-        <script id="commandesTemplate" type="text/template">
-            <TABLE>
-            <tr><th>Numéro de commande</th><th>ID Client</th><th>ID Produit</th><th>Quantité</th><th>Prix de livraison</th><th>Date de Vente</th><th>Date de Livraison</th><th>Companie de livraison</th><th>modifier</th><th>supprimer</th></tr>
-            {{! Pour chaque enregistrement }}
-            {{#records}}
-                {{! Une ligne dans la table }}
-                <TR><TD>{{ordernum}}</TD><TD>{{idcustomer}}</TD><TD>{{idproduct}}</TD><TD>{{quantity}}</TD><TD>{{shippingcost}}</TD><TD>{{salesDate}}</TD><TD>{{shippingDate}}</TD><TD>{{company}}</TD><TD><button class="b1"><a href="">Modifier</a></button></TD><TD><button class="b1" onclick="deleteCommande('{{ordernum}}')">Supprimer</button></TD></TR>
-            {{/records}}
-            </TABLE>
-        </script>
         
         
     </body>
-
 </html>
