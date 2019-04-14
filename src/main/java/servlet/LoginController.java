@@ -43,7 +43,7 @@ public class LoginController extends HttpServlet {
            response.setContentType("text/html;charset=UTF-8");
         String action = request.getParameter("action");
         
-             System.out.println("testttt  "+action);
+          
         if (null != action) {
             switch (action) {
                 case "connexion":
@@ -58,7 +58,7 @@ public class LoginController extends HttpServlet {
         }
 
        //vérification de la connectivité
-        String userName = findUserInSession(request);
+        Customer userName = findUserInSession(request);
         String jspView;
         if (null == userName) { 
             // si l'utilisateur n'est pas connecté, on choisit la page de login
@@ -78,7 +78,7 @@ public class LoginController extends HttpServlet {
         // Les paramètres transmis dans la requête
         String login = request.getParameter("email");
         int pwd = Integer.parseInt(request.getParameter("motdepasse"));
-
+           System.out.println("testttt  "+pwd);
         CustomerDAO cdao = new CustomerDAO(DataSourceFactory.getDataSource());
        
         Customer user = cdao.LoginCustomer(pwd,login);
@@ -92,13 +92,6 @@ public class LoginController extends HttpServlet {
             return true;
             
            
-        } else if (login=="administrateur" && pwd==300) { 
-            String jspView;
-            HttpSession session = request.getSession(true); // démarre la session
-            session.setAttribute("userName", user);
-            jspView = "afficheCA.jsp";
-            //request.getRequestDispatcher(jspView).forward(request, response);
-            return true;
         } else{ // On positionne un message d'erreur pour l'afficher dans la JSP
              request.setAttribute("errorMessage", "Login/Password incorrect");
             return false;
@@ -112,9 +105,9 @@ public class LoginController extends HttpServlet {
 		}
     }
 
-    private String findUserInSession(HttpServletRequest request) {
+    private Customer findUserInSession(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
-        return (session == null) ? null : (String) session.getAttribute("userName");
+        return (session == null) ? null : (Customer) session.getAttribute("userName");
     }
     
 

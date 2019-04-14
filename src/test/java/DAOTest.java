@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-import org.hsqldb.cmdline.SqlFile;
+/*import org.hsqldb.cmdline.SqlFile;
 import org.hsqldb.cmdline.SqlToolError;
 import static JDBC.DataSourceFactory.getDataSource;
 import static org.junit.Assert.*;
@@ -29,7 +29,7 @@ import simplejdbc.DAOException;
  *
  * @author RBarbara
  */
-public class DAOTest {
+/*public class DAOTest {
     //L'objet qu'on va testé.
 
     private DAO myDAO;
@@ -38,14 +38,14 @@ public class DAOTest {
     //La connexion de la BDD.
     private static Connection myConnection;
     //Le prix du produit.
-    private product purchaseCost;
+  //  private product purchaseCost;
 
     /**
      * Test for the data base
      */
-    @Before
+//    @Before
     //Test la création de la BDD.
-    public void createBDD() throws IOException, SQLException, SqlToolError {
+   /* public void createBDD() throws IOException, SQLException, SqlToolError {
         myDataSource = getDataSource();
         myConnection = myDataSource.getConnection();
         myDAO = new DAO(myDataSource);
@@ -72,8 +72,8 @@ public class DAOTest {
      * Test for the class dataSourceFactory
      */
     //Test l'acquisition de la source de donnée.
-	@Test
-    public void getDataSource() throws DAOException {
+//	@Test
+    /*public void getDataSource() throws DAOException {
         org.hsqldb.jdbc.JDBCDataSource ds = new org.hsqldb.jdbc.JDBCDataSource();
         ds.setDatabase("jdbc:hsqldb:mem:testcase;shutdown=true");
         ds.setUser("username");
@@ -84,7 +84,7 @@ public class DAOTest {
     /**
      * Test for the class DAO
      */
-    @Test
+    /*@Test
     //Test l'ajout de commande.
     public void addOrder() throws DAOException {
         throw new UnsupportedOperationException("Pas encore implémenté");
@@ -105,7 +105,7 @@ public class DAOTest {
     /**
      * Test for the class CustomerDAO
      */
-    @Test
+    /*@Test
     // Test si le login fonctionne
     public void logIN() throws DAOException {
         int customerID = 1;
@@ -116,7 +116,7 @@ public class DAOTest {
     /**
      * Test for the class ???
      */
-    @Test
+    /*@Test
     //Test le calcule du prix du produit.
     //"Méthode à implémenter"
     public void finalPrice() {
@@ -127,4 +127,6 @@ public class DAOTest {
         float markup = 0;
         assertEquals(price * quantity * 0.01 * (1 - discountRate) + shippingcost, "Méthode qui calcule le prix final");
     }
-}
+}*/
+    
+

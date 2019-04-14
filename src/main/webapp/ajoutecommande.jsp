@@ -26,11 +26,12 @@
         function showProduits() {
                 // On fait un appel AJAX pour chercher les produits selectionnables
                 $.ajax({
-                    url: "allProduits",
+                    url: "PurchaseOder",
                     dataType: "json",
                     error: showError,
                     success: // La fonction qui traite les résultats
                             function (result) {
+                                console.log("on est la")
                                 // Le code source du template est dans la page
                                 var template = $('#produitsTemplate').html();
                                 // On combine le template avec le résultat de la requête
@@ -44,7 +45,7 @@
             // Ajouter une commande
             function addCommande() {
                 $.ajax({
-                    url: "addCommande",
+                    url: "PurchaseOder",
                     // serialize() renvoie tous les paramètres saisis dans le formulaire
                     data: $("#commandeForm").serialize(),
                     dataType: "json",

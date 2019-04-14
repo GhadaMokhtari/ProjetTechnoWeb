@@ -27,23 +27,17 @@ import java.util.Properties;
  * @author bonne
  */
 
-@WebServlet(name = "listCommandesServlet", urlPatterns = {"/allCommandes"})
+@WebServlet(name = "allCommandes", urlPatterns = {"/allCommandes"})
 public class ListCommandesServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {
-
+                System.out.println("enttttttttttttreeeeeeeeeeee");
 		// Créér le DAO avec sa source de données
 		DAO dao = new DAO(DataSourceFactory.getDataSource());
 
 		Properties resultat = new Properties();
-		try {
-			resultat.put("records", dao.allCommandes());
-		} catch (SQLException ex) {
-			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-			resultat.put("records", Collections.EMPTY_LIST);
-			resultat.put("message", ex.getMessage());
-		}
+		
 
 		try (PrintWriter out = response.getWriter()) {
 			// On spécifie que la servlet va générer du JSON
@@ -51,6 +45,7 @@ public class ListCommandesServlet {
 			// Générer du JSON
 			// Gson gson = new Gson();
 			// setPrettyPrinting pour que le JSON généré soit plus lisible
+                        System.out.println("hhhhhhhhhhoooooooooooohhhhh");
 			Gson gson = new GsonBuilder().setPrettyPrinting().create();
 			out.println(gson.toJson(resultat));
 		}

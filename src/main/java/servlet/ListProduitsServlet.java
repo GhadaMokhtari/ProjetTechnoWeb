@@ -23,12 +23,12 @@ import model.DataSourceFactory;
  *
  * @author bonne
  */
-@WebServlet(name = "listProduitsServlet", urlPatterns = {"/allProduits"})
+@WebServlet(name = "ListProduitsServlet", urlPatterns = {"/ListProduitsServlet"})
 public class ListProduitsServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {
-
+                System.out.println("OUTTTTTTTR");
 		// Créér le DAO avec sa source de données
 		DAO dao = new DAO(DataSourceFactory.getDataSource());
 

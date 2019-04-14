@@ -39,14 +39,42 @@ public class DAO {
 	 * @return Liste des commandes
 	 * @throws SQLException renvoyées par JDBC
 	 */
-	public List<PurchaseOrder> allCommandes() throws SQLException {
+	public List<PurchaseOrder> allCommandesByCustomer(int customerId) throws SQLException {
+
+		List<PurchaseOrder> result = new LinkedList<>();
+
+		String sql = "SELECT * FROM PURCHASE_ORDER WHERE CUSTOMER_ID = ?";
+		try (Connection connection = myDataSource.getConnection(); 
+		     PreparedStatement stmt = connection.prepareStatement(sql)) {
+                           stmt.setInt(1, customerId);		
+                           ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				int num=rs.getInt("ORDER_NUM");
+                                int idclient=rs.getInt("CUSTOMER_ID");
+                                int idproduit=rs.getInt("PRODUCT_ID");
+                                int quantity=rs.getInt("QUANTITY");
+                                int shippingcost=rs.getInt("SHIPPING_COST");
+                                Date salesdate=rs.getDate("SALES_DATE");
+                                Date shippingdate=rs.getDate("SHIPPING_DATE");
+                                String company=rs.getString("FREIGHT_COMPANY");
+
+				PurchaseOrder c = new PurchaseOrder(num, idclient, idproduit, quantity, shippingcost, salesdate, shippingdate, company);
+				result.add(c);
+			}
+		}
+		return result;
+	}
+        
+        
+        	public List<PurchaseOrder> allCommandes() throws SQLException {
 
 		List<PurchaseOrder> result = new LinkedList<>();
 
 		String sql = "SELECT * FROM PURCHASE_ORDER ORDER BY ORDER_NUM";
 		try (Connection connection = myDataSource.getConnection(); 
 		     PreparedStatement stmt = connection.prepareStatement(sql)) {
-			ResultSet rs = stmt.executeQuery();
+                          		
+                           ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				int num=rs.getInt("ORDER_NUM");
                                 int idclient=rs.getInt("CUSTOMER_ID");

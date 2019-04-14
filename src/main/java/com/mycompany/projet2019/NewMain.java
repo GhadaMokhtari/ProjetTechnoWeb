@@ -37,7 +37,7 @@ public class NewMain {
         
         DAO daof = new DAO( DataSourceFactory.getDataSource());
         
-        System.out.println("order "+daof.allCommandes().size());
+       // System.out.println("order "+daof.allCommandes().size());
     }
     
 }
