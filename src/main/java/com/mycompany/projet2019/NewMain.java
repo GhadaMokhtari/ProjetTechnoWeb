@@ -11,7 +11,7 @@ import model.Customer;
 import model.CustomerDAO;
 import model.DAO;
 import model.DataSourceFactory;
-import simplejdbc.DAOException;
+import model.DAOException;
 
 /**
  *

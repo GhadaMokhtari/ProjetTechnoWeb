@@ -47,7 +47,6 @@ public class PurchaseOder extends HttpServlet {
         response.setContentType("application/json;charset=UTF-8");
        
         String action = request.getParameter("action");
-        System.out.println("action "+action);
             if (action == "ADDCOMMANDE") {
                 System.out.println("ajouter une commande");
             }

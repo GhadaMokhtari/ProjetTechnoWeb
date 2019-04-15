@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sql.DataSource;
-import simplejdbc.DAOException;
+import model.DAOException;
 
 public class DAO {
 

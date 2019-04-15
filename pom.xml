@@ -33,12 +33,7 @@
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>fr.irit.bastide</groupId>
-            <artifactId>SimpleJDBC</artifactId>
-            <version>1.0</version>
-        </dependency>
-                <!-- Derby embedded database and JDBC Driver -->
+
         <dependency>
             <groupId>org.apache.derby</groupId>
             <artifactId>derby</artifactId>

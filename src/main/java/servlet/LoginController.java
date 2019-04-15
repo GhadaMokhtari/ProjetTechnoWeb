@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 import model.Customer;
 import model.CustomerDAO;
 import model.DataSourceFactory;
-import simplejdbc.DAOException;
+import model.DAOException;
 
 /**
  *

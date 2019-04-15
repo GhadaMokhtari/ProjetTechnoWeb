@@ -82,7 +82,7 @@
         <table id="commandes">
             
         </table>
-        <a  href="PurchaseOder?action=ADDCOMMANDE" >
+        <a  href="ajoutecommande.jsp" >
         <input class="a" type="button" value="Ajouter une commande">
        </a>
 

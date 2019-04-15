@@ -20,13 +20,14 @@
                     function () {
                         // On montre la liste des codes
                         showProduits();
+                        
                     }
             );
     
         function showProduits() {
                 // On fait un appel AJAX pour chercher les produits selectionnables
                 $.ajax({
-                    url: "PurchaseOder",
+                    url: "affichepdt",
                     dataType: "json",
                     error: showError,
                     success: // La fonction qui traite les résultats
@@ -45,7 +46,7 @@
             // Ajouter une commande
             function addCommande() {
                 $.ajax({
-                    url: "PurchaseOder",
+                    url: "addcommande",
                     // serialize() renvoie tous les paramètres saisis dans le formulaire
                     data: $("#commandeForm").serialize(),
                     dataType: "json",
@@ -78,6 +79,11 @@
         
         <h1>Formulaire d'ajout d'une commande</h1>
         
+        <table id="formulaireajout">
+            
+        </table>
+        
+        <script id="produitsTemplate" type="text/template">
         <form id="commandeForm" onsubmit="event.preventDefault(); addCommande();">
             <fieldset><legend>Ajout d'une nouvelle commande</legend>
             Numéro de commande : <input id="ordernum" name="ordernum" required ><br/>
@@ -93,12 +99,13 @@
             date de vente: <input id="salesdate" name="salesdate" required placeholder="yyyy-MM-d"><br/>
             date d'envoi: <input id="shippingdate" name="shippingdate" required placeholder="yyyy-MM-d"><br/>
             Entreprise de transport: <input id="company" name="company" type="text" required><br/>
-            <input type="hidden" id="idcustomer" name="idcustomer" value="">
+            <input type="hidden" id="idcustomer" name="idcustomer" value="1">
             
             
             <input type="submit" value="Ajouter">
             </fieldset>
         </form>
+        </script>
         
         
         
